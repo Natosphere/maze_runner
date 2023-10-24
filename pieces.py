@@ -4,7 +4,7 @@ from utilities import get_cell_wall_status
 # create each of the squares
 
 
-
+### DEPRICATED by cell_img_creator in utilities
 
 
 # '   ' no walls
