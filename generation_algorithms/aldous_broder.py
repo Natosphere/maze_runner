@@ -11,7 +11,6 @@ def generate_aldous_broder(size=(50,50), verbose=True):
 
 
 	# while empty cells
-	# Find and sort the locations of the search_value in the 2D array
 	empty_cells = utilities.get_empty_cells(maze)
 
 	# random cell = current

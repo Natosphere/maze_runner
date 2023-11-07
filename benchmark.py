@@ -85,7 +85,7 @@ for size in maze_sizes:
 
 
 for i, size_times in enumerate(aldous_timings):
-	print(f"Wilson-{maze_sizes[i]} avg: {size_times[0]}") 
+	print(f"Aldous-{maze_sizes[i]} avg: {size_times[0]}") 
 
 
 

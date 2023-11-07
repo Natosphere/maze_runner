@@ -67,7 +67,7 @@ def generate_wilson(size=(50,50), seed=None, display=False, waitTime=500, displa
 		else: dest_cell_loc = [-1,-1]
 
 		if display and display_stepped:
-			base_img = utilities.display_maze(maze, scale=scale, display=False, waitTime=waitTime, square_size=square_size, wall_thickness=wall_thickness)
+			base_img = utilities.display_maze(maze, scale=scale, display=False, waitTime=waitTime, square_size=square_size, wall_thickness=wall_thickness, dest_cell=dest_cell_loc)
 			path_img = base_img.copy()
 
 		
@@ -139,7 +139,7 @@ def generate_wilson(size=(50,50), seed=None, display=False, waitTime=500, displa
 				maze = utilities.add_path(maze, path)
 
 				if display and display_stepped:
-					base_img = utilities.display_maze(maze, scale=scale, display=display, waitTime=waitTime, square_size=square_size, wall_thickness=wall_thickness)	
+					base_img = utilities.display_maze(maze, scale=scale, display=display, waitTime=waitTime, square_size=square_size, wall_thickness=wall_thickness, dest_cell=dest_cell_loc)	
 					path_img = base_img.copy()
 
 

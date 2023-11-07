@@ -129,7 +129,7 @@ def display_image(img, title, scale, waitTime):
 
 
 
-def display_maze(maze, wall_color=(0,0,0,255), background_color=(255,255,255,255), wall_thickness=1, square_size=6, title="maze", scale=4, display=False, waitTime=500):
+def display_maze(maze, wall_color=(0,0,0,255), background_color=(255,255,255,255), wall_thickness=1, square_size=6, title="maze", scale=4, display=False, waitTime=500, dest_cell=(-1,-1)):
 	maze_x = (maze.shape[0] * square_size) - ((maze.shape[0] * wall_thickness) - 1)
 	maze_y = (maze.shape[1] * square_size) - ((maze.shape[1] * wall_thickness) - 1)
 	maze_img = Image.new("RGBA", (maze_y, maze_x), background_color)
@@ -150,8 +150,11 @@ def display_maze(maze, wall_color=(0,0,0,255), background_color=(255,255,255,255
 
 
 
-			# generate the square
-			current_cell = cell_img_creator(maze[row][col], size=square_size, color=wall_color, wall_thickness=wall_thickness)
+			# generate the square, display the destination cell
+			if row == dest_cell[1] and col == dest_cell[0]:
+				current_cell = cell_img_creator(maze[row][col], size=square_size, color=background_color, wall_thickness=wall_thickness)
+			else:
+				current_cell = cell_img_creator(maze[row][col], size=square_size, color=wall_color, wall_thickness=wall_thickness)
 
 			# slice and replace the squares of the maze
 			maze_img.alpha_composite(current_cell, (current_x, current_y))
@@ -202,3 +205,4 @@ def display_path(img_base, path, color=(127,127,127,255), background_color=(127,
 			opencvImage = cv2.resize(opencvImage, (opencvImage.shape[1]*scale, opencvImage.shape[0]*scale), interpolation = cv2.INTER_NEAREST)
 			cv2.imshow(title, opencvImage)
 			cv2.waitKey(waitTime)
+	return opencvImage
