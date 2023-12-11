@@ -129,7 +129,7 @@ def display_image(img, title, scale, waitTime):
 
 
 
-def display_maze(maze, wall_color=(0,0,0,255), background_color=(255,255,255,255), wall_thickness=1, square_size=6, title="maze", scale=4, display=False, waitTime=500, dest_cell=(-1,-1)):
+def display_maze(maze, wall_color=(0,0,0,255), background_color=(255,255,255,255), wall_thickness=1, square_size=6, title="maze", scale=3, display=False, waitTime=500, dest_cell=(-1,-1)):
 	maze_x = (maze.shape[0] * square_size) - ((maze.shape[0] * wall_thickness) - 1)
 	maze_y = (maze.shape[1] * square_size) - ((maze.shape[1] * wall_thickness) - 1)
 	maze_img = Image.new("RGBA", (maze_y, maze_x), background_color)

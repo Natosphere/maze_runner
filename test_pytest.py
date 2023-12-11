@@ -1,5 +1,4 @@
 import generation_algorithms.wilson_algo as wilson_algo
-import pieces
 import utilities
 import numpy as np
 

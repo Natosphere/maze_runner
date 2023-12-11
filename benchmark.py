@@ -40,7 +40,9 @@ def benchmark(func, num_tests, size):
 # inputs
 num_tests = 10
 maze_sizes = np.array([10, 20, 30, 40, 50, 75, 100])
-# maze_sizes = np.array([10, 20, 30, 40])
+maze_sizes = np.array([10, 20, 30, 40])
+
+
 
 
 # test wilson
@@ -50,56 +52,58 @@ for size in maze_sizes:
 
 	current_size_timeings.insert(0, round(statistics.mean(current_size_timeings), 3))
 	# current_size_timeings.insert(0, str(size))
-	wilson_timings.append(current_size_timeings)
-
-
-for i, size_times in enumerate(wilson_timings):
-	print(f"Wilson-{maze_sizes[i]} avg: {size_times[0]}") 
+	wilson_timings.append(round(statistics.mean(current_size_timeings), 3))
 
 
 
-wilson_timings_array = np.array(wilson_timings)
-wilson_averages_list = wilson_timings_array[:,0]
+
+# wilson_averages_list = np.array(wilson_timings)
+maze_sizes_1 = ','.join(map(str, maze_sizes)) 
+print(maze_sizes_1)
+
+csv_wilson = np.array(wilson_timings).reshape(1, -1)
+np.savetxt("./benchmarks" + "/wilson_benchmarks.csv", X=csv_wilson, header=maze_sizes_1, fmt='%f')
+print(wilson_timings)
 
 # plot wilson
 # smooth line look good
 xnew = np.linspace(maze_sizes.min(), maze_sizes.max(), 300)
-spl = make_interp_spline(maze_sizes, wilson_averages_list, k=3)
+spl = make_interp_spline(maze_sizes, wilson_timings, k=3)
 average_smooth = spl(xnew)
 
 plt.plot(xnew, average_smooth, color="blue", label="Wilson")
-plt.scatter(maze_sizes, wilson_averages_list, color='blue', marker='o')
+plt.scatter(maze_sizes, wilson_timings, color='blue', marker='o')
 
 
 
 
 
 # test aldous-broder
-aldous_timings = []
-for size in maze_sizes:
-	current_size_timeings = benchmark(generate_aldous_broder, num_tests, size)
+# aldous_timings = []
+# for size in maze_sizes:
+# 	current_size_timeings = benchmark(generate_aldous_broder, num_tests, size)
 
-	current_size_timeings.insert(0, round(statistics.mean(current_size_timeings), 3))
-	# current_size_timeings.insert(0, str(size))
-	aldous_timings.append(current_size_timeings)
-
-
-for i, size_times in enumerate(aldous_timings):
-	print(f"Aldous-{maze_sizes[i]} avg: {size_times[0]}") 
+# 	current_size_timeings.insert(0, round(statistics.mean(current_size_timeings), 3))
+# 	# current_size_timeings.insert(0, str(size))
+# 	aldous_timings.append(current_size_timeings)
 
 
+# for i, size_times in enumerate(aldous_timings):
+# 	print(f"Aldous-{maze_sizes[i]} avg: {size_times[0]}") 
 
-aldous_timings_array = np.array(aldous_timings)
-aldous_averages_list = aldous_timings_array[:,0]
 
-# plot aldous-broder
-# smooth line look good
-xnew = np.linspace(maze_sizes.min(), maze_sizes.max(), 300)
-spl = make_interp_spline(maze_sizes, aldous_averages_list, k=3)
-average_smooth = spl(xnew)
 
-plt.plot(xnew, average_smooth, color="red", label="Aldous-Broder")
-plt.scatter(maze_sizes, aldous_averages_list, color='red', marker='o')
+# aldous_timings_array = np.array(aldous_timings)
+# aldous_averages_list = aldous_timings_array[:,0]
+
+# # plot aldous-broder
+# # smooth line look good
+# xnew = np.linspace(maze_sizes.min(), maze_sizes.max(), 300)
+# spl = make_interp_spline(maze_sizes, aldous_averages_list, k=3)
+# average_smooth = spl(xnew)
+
+# plt.plot(xnew, average_smooth, color="red", label="Aldous-Broder")
+# plt.scatter(maze_sizes, aldous_averages_list, color='red', marker='o')
 
 
 

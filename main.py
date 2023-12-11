@@ -22,11 +22,7 @@ maze_array, maze_img = generate_wilson(size=(20,20),
 									   display=True, 
 									   display_stepped=True, 
 									   waitTime=10, 
-									   scale=3, 
-									   square_size=6, 
-									   wall_thickness=1,
-									   wall_color=(0,0,0,255), 
-									   background_color=(255,255,255))
+									   scale=3)
 
 
 
@@ -35,6 +31,10 @@ maze_array, maze_img = generate_wilson(size=(20,20),
 
 
 
-# sys.setrecursionlimit(1500)
-# recursive_maze = generate_recursive(size=(10,10))
-# display_maze(recursive_maze, display=True, waitTime=0)
+sys.setrecursionlimit(1500)
+recursive_maze = generate_recursive(size=(40,40), 
+									display=True, 
+									display_stepped=False, 
+									waitTime=10, 
+									scale=3)
+display_maze(recursive_maze, display=True, waitTime=0)
